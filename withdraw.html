@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Withdraw Money</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <script language="php">
+        <?php
+// Connect to the database
+$db = new mysqli('localhost', 'username', 'password', 'database');
+
+// Check for errors
+if ($db->connect_errno) {
+	die('Sorry, there was a problem connecting to the database.');
+}
+
+// Get the user's ID from the session
+$user_id = $_SESSION['user_id'];
+
+// Get the withdrawal amount and Mpesa number from the form
+$withdrawal_amount = $_POST['amount'];
+$mpesa_number = $_POST['mpesa'];
+
+// Check that the user has enough balance to make the withdrawal
+$result = $db->query("SELECT balance FROM accounts WHERE user_id = $user_id");
+$row = $result->fetch_assoc();
+$current_balance = $row['balance'];
+// Get the user's phone number from the form
+var phone_number = document.getElementById('phone_number').value;
+
+// Compose the message to send
+var message_body = "Your withdrawal of " + withdrawal_amount + " KES has been initiated.";
+
+// Send the SMS message
+$.ajax({
+  type: 'POST',
+  url: 'send_sms.php',
+  data: {
+    phone_number: phone_number,
+    message_body: message_body
+  },
+  success: function(response) {
+    Swal.fire({
+      title: 'Success!',
+      text: 'SMS notification sent.',
+      icon: 'success'
+    });
+  },
+  error: function(response) {
+    Swal.fire({
+      title: 'Error!',
+      text: 'Failed to send SMS notification.',
+      icon: 'error'
+    });
+  }
+});
+In this example, we're using the jQuery library to send an HTTP POST request to a PHP script called send_sms.php. We pass the user's phone number and the message body as parameters in the POST request.
+
+In the send_sms.php file, add code to send the SMS message using the Twilio API:
+php
+Copy code
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Twilio\Rest\Client;
+
+// Get the Twilio API credentials from environment variables
+$twilio_account_sid = getenv('TWILIO_ACCOUNT_SID');
+$twilio_auth_token = getenv('TWILIO_AUTH_TOKEN');
+$twilio_phone_number = getenv('TWILIO_PHONE_NUMBER');
+
+// Get the user's phone number and message body from the HTTP POST request
+$phone_number = $_POST['phone_number'];
+$message_body = $_POST['message_body'];
+
+// Create a new Twilio client
+$client = new Client($twilio_account_sid, $twilio_auth_token);
+
+// Send the SMS message
+$message = $client->messages->create(
+  $phone_number,
+  array(
+    'from' => $twilio_phone_number,
+    'body' => $message_body
+  )
+);
+
+?>
+In this example, we're using the Twilio PHP library to send an SMS message to the user's phone number. First, we get the Twilio API credentials from environment variables. Then we get the user's phone number and message body from the HTTP POST request. Finally, we create a new Twilio client and use it to send the SMS message.
+
+With these steps, you can send an SMS notification to the user's phone number after they initiate a withdrawal and the JavaScript code sends an HTTP POST request to the send_sms.php script which uses the Twilio API to send the SMS message.
+
+
+
+
+
+
+
+if ($withdrawal_amount > $current_balance) {
+	die('Sorry, you do not have enough balance to make this withdrawal.');
+}
+
+// Initiate the withdrawal transaction
+// Here, you would write code to initiate the transaction with your payment processor or bank
+// and update the user's account balance accordingly
+
+// Send a notification to the user
+$message = "Your withdrawal of $withdrawal_amount KES to $mpesa_number has been initiated.";
+// Here, you would write code to send a notification to the user, either by email, SMS, or other means
+
+// Close the database connection
+$db->close();
+
+// Redirect the user back to the account page
+header('Location: account.php');
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Twilio\Rest\Client;
+
+// Get the Twilio API credentials from environment variables
+$twilio_account_sid = getenv('TWILIO_ACCOUNT_SID');
+$twilio_auth_token = getenv('TWILIO_AUTH_TOKEN');
+$twilio_phone_number = getenv('TWILIO_PHONE_NUMBER');
+
+// Get the user's phone number and message body from the HTTP POST request
+$phone_number = $_POST['phone_number'];
+$message_body = $_POST['message_body'];
+
+// Create a new Twilio client
+$client = new Client($twilio_account_sid, $twilio_auth_token);
+
+// Send the SMS message
+$message = $client->messages->create(
+  $phone_number,
+  array(
+    'from' => $twilio_phone_number,
+    'body' => $message_body
+  )
+);
+
+?>
+    </script>
+</head>
+<style>
+	body{
+		background-color: chartreuse;
+	}
+</style>
+<body>
+	<h1>Withdraw Money</h1>
+	<p>Your current balance is: $100</p>
+	
+	<form method="post" action="withdraw.php">
+		<label for="amount">Withdraw Amount:</label>
+		<input type="number" id="amount" name="amount" min="1" max="100" required>
+		<br><br>
+		<label for="mpesa">Mpesa Number:</label>
+		<input type="text" id="mpesa" name="mpesa" required>
+		<br><br>
+		<input type="submit" value="Withdraw">
+	</form>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/@twilio/sdk@3.0.0/dist/twilio.min.js"></script>
+</body>
+</html>

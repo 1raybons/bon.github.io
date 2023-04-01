@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="javascript">
+     function validateForm() {
+    const amount = document.getElementById("amount").value;
+    const phone = document.getElementById("phone").value;
+  
+    if (amount < 100) {
+      alert("Deposit amount must be at least 100 KES.");
+      return false;
+    }
+  
+    // Validate the phone number
+    const phoneRegex = /^07\d{8}$/;
+    if (!phoneRegex.test(phone)) {
+      alert("Invalid phone number.");
+      return false;
+    }
+  
+    return true;
+  }
+  
+  // Add the event listener for form submission
+  document.getElementById("deposit-form").addEventListener("submit", (event) => {
+    if (!validateForm()) {
+      event.preventDefault();
+    }
+  });
+</script>
+<style>
+  body{
+    background-color: chartreuse;
+  }
+     form {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  input[type="number"],
+  input[type="tel"],
+  input[type="submit"] {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #2E8B57;
+  }
+</style>
+<body><form method="post" action="deposit.php">
+    <label for="amount">Deposit Amount (KES):</label>
+    <input type="number" id="amount" name="amount" min="100" required>
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" required>
+    <input type="submit" value="Deposit">
+  </form>
+  <?php
+  // Retrieve the form data
+  $amount = $_POST["amount"];
+  $phone = $_POST["phone"];
+  
+  // Perform validation
+  if ($amount < 100) {
+    echo "Deposit amount must be at least 100 KES.";
+    exit;
+  }
+  
+  if (!preg_match("/^07\d{8}$/", $phone)) {
+    echo "Invalid phone number.";
+    exit;
+  }
+  
+  // Perform the M-Pesa payment process here using an M-Pesa API or gateway
+  
+  // Redirect the user to a success page
+  header("Location: deposit-success.php");
+  exit;
+  ?>
+</body>
+</html>

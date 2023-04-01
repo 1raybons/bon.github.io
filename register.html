@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<style>
+  body{
+    background-color: #00FF00;
+  }
+    .container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+.colored-btn {
+  position: relative;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.colored-btn::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  border-radius: 5px;
+  border: 2px solid #4CAF50;
+  z-index: -1;
+}
+
+.colored-btn::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  width: calc(100% + 24px);
+  height: calc(100% + 24px);
+  border-radius: 5px;
+  border: 6px solid transparent;
+  animation: colors 6s linear infinite;
+}
+
+@keyframes colors {
+  0% {
+    border-color: #FF0000;
+  }
+  16.66% {
+    border-color: #FFA500;
+  }
+  33.33% {
+    border-color: #FFFF00;
+  }
+  50% {
+    border-color: #00FF00;
+  }
+  66.66% {
+    border-color: #0000FF;
+  }
+  83.33% {
+    border-color: #8B00FF;
+  }
+  100% {
+    border-color: #FF0000;
+  }
+}
+
+
+</style>
+<body>
+	<div class="container">
+		<h1>Register</h1>
+		<form method="POST" action="register.php">
+			<label for="username">Username:</label>
+			<input type="text" id="username" name="username" required>
+
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" required>
+
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" required>
+
+			<a href="login.html" ><input type="submit" value="register"></a>
+		</form>
+	</div><div class="colored-btn" style="width:290px;height:340px">
+        <img src="ray.png" alt="me"style="width:300px;height:350px">
+        </div>
+</body>
+</html>

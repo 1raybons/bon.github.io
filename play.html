@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Guessing Game</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<script>
+    var secretNumber = Math.floor(Math.random() * 10) + 1;
+
+function checkGuess() {
+	var guess = parseInt(document.getElementById("guess").value);
+	
+	if (guess === secretNumber) {
+		document.getElementById("result").innerHTML = "You guessed it! You win!";
+	} else {
+		document.getElementById("result").innerHTML = "Sorry, that's not the number. Try again.";
+	}
+}
+</script>
+<style>
+  body{
+    background-color:#00FF00;
+  }
+    h1 {
+	font-size: 36px;
+}
+
+input[type=number] {
+	font-size: 24px;
+}
+#result {
+	font-size: 24px;
+	margin-top: 20px;
+}
+
+button {
+	font-size: 24px;
+	padding: 10px;
+	margin-top: 20px;
+}
+.money-rain {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.money {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("money.png");
+  background-size: contain;
+  animation: fall 3s ease-in-out forwards;
+}
+
+@keyframes fall {
+  0% {
+    top: -50px;
+    left: calc(50% - 25px);
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(180deg);
+  }
+  100% {
+    top: calc(50% - 25px);
+    left: calc(50% - 25px);
+    opacity: 1;
+    transform: rotate(360deg);
+  }
+}
+.colored-btn {
+  position: relative;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.colored-btn::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  border-radius: 5px;
+  border: 2px solid #4CAF50;
+  z-index: -1;
+}
+
+.colored-btn::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  width: calc(100% + 24px);
+  height: calc(100% + 24px);
+  border-radius: 5px;
+  border: 6px solid transparent;
+  animation: colors 6s linear infinite;
+}
+
+@keyframes colors {
+  0% {
+    border-color: #FF0000;
+  }
+  16.66% {
+    border-color: #FFA500;
+  }
+  33.33% {
+    border-color: #FFFF00;
+  }
+  50% {
+    border-color: #00FF00;
+  }
+  66.66% {
+    border-color: #0000FF;
+  }
+  83.33% {
+    border-color: #8B00FF;
+  }
+  100% {
+    border-color: #FF0000;
+  }
+}
+
+.rotating-btn {
+  position: relative;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-left: 400px;
+  margin-top: -150px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  animation: rotate 3s linear infinite;
+}
+
+.rotating-btn::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #FFC107;
+  animation: orbit 3s linear infinite;
+}
+
+.rotating-btn::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #2196F3;
+  animation: orbit 3s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(100px) translateY(0);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+
+</style>
+<body>
+	<h1>Guess a Number between 1 and 10</h1>
+	<input type="number" id="guess">
+	<button onclick="checkGuess()">Submit Guess</button>
+	<p id="result"></p>
+</body>
+<div class="money-rain">
+	<div class="money"><img src="ole.png" alt=""></div>
+  </div>
+  <br>
+  <br>
+  <button class="colored-btn">wish all the best!</button>
+  <br>
+  <br>
+  <button class="rotating-btn">wish you a good luck!</button>
+</html>

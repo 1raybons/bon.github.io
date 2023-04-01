@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+	<title>My Website</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<script>
+</script>
+<style>
+    body{
+        background-color:chartreuse;
+    }
+    .container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+header, footer {
+	background-color: #333;
+	color: #fff;
+	padding: 10px;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav ul li {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+nav ul li a {
+	color: #333;
+	text-decoration: none;
+	padding: 10px;
+	background-color: #eee;
+	border-radius: 5px;
+}
+
+nav ul li a:hover {
+	background-color: #ccc;
+	color: #fff;
+}
+.six-face-box {
+	margin-left: 600px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate 5s infinite linear;
+}
+
+.face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.face:nth-child(1) {
+  transform: translateZ(100px);
+  background-color: #ff0000;
+}
+
+.face:nth-child(2) {
+  transform: rotateY(90deg) translateZ(100px);
+  background-color: #00ff00;
+}
+
+.face:nth-child(3) {
+  transform: rotateY(180deg) translateZ(100px);
+  background-color: #0000ff;
+}
+
+.face:nth-child(4) {
+  transform: rotateY(-90deg) translateZ(100px);
+  background-color: #ffff00;
+}
+
+.face:nth-child(5) {
+  transform: rotateX(90deg) translateZ(100px);
+  background-color: #ff00ff;
+}
+
+.face:nth-child(6) {
+  transform: rotateX(-90deg) translateZ(100px);
+  background-color: #00ffff;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(360deg);
+  }
+}
+
+.six-face-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  border: 30px solid #ff0000;
+  border-radius: 50%;
+  animation: dim 2s infinite;
+}
+
+@keyframes dim {
+  0% {
+    border-color: #ff0000;
+    box-shadow: 0 0 5px #ff0000;
+  }
+  14.29% {
+    border-color: #ff7f00;
+    box-shadow: 0 0 5px #ff7f00;
+  }
+  28.57% {
+    border-color: #ffff00;
+    box-shadow: 0 0 5px #ffff00;
+  }
+  42.86% {
+    border-color: #00ff00;
+    box-shadow: 0 0 5px #00ff00;
+  }
+  57.14% {
+    border-color: #0000ff;
+    box-shadow: 0 0 5px #0000ff;
+  }
+  71.43% {
+    border-color: #8b00ff;
+    box-shadow: 0 0 5px #8b00ff;
+  }
+  85.71% {
+    border-color: #ff00ff;
+    box-shadow: 0 0 5px #ff00ff;
+  }
+  100% {
+    border-color: #ff0000;}
+.home-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.home-btn:hover {
+  background-color: #2980b9;
+}
+
+.home-btn i {
+  font-size: 24px;
+}
+
+
+</style>
+<body>
+	<div class="container">
+		<header>
+			<h1 style="color:red">Welcome to bon's website!</h1>
+		</header>
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="login.html">Login</a></li>
+				<li><a href="register.html">Register</a></li>
+				<li><a href="deposit.html">Deposit Money</a></li>
+				<li><a href="play.html">Play Game</a></li>
+				<li><a href="withdraw.html">Withdraw Money</a></li>
+			</ul>
+		</nav>
+		<main>
+			<h2>About Us</h2>
+			<p>We are a gaming website that allows users to play games and win money!</p>
+		</main>
+		<footer>
+			<p>&copy; 2023 My Website</p>
+		</footer>
+        <marquee>coontact us this email:<span style="color:green"><a href="raybons53@gmail.com">raybons53@gmail.com</a></span></marquee>
+	</div>
+	<div class="six-face-box">
+        <div class="face"><img src="raybons.png" alt="me"style="height:200px;width:200px"></div>
+        <div class="face"><img src="IMG_20230224_135144_856.jpg" alt="6"style="height:200px;width:200px"></div>
+        <div class="face"><img src="gavin-mcgruddy-p23YJJMT16s-unsplash copy.png" alt="0"style="height:200px;width:200px"></div>
+        <div class="face"><img src="ole.png" alt="3"style="height:200px;width:200px"></div>
+        <div class="face"><img src="IMG_20230221_090708_020.jpg" alt="4"style="height:200px;width:200px"></div>
+        <div class="face"><img src="tt.png" alt="1"style="height:200px;width:200px"</div>
+      </div>
+      
+	  <br>
+	  
+	  <br>
+	  <br>
+	 
+	  <br>
+	  <br>
+	  <a href="#" class="home-btn"><i class="fa fa-home"></i></a>
+	  <br>
+	  <br>
+  </div>
+
+</body>
+</html>
